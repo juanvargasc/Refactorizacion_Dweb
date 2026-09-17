@@ -1,0 +1,215 @@
+/* ==========================================================================
+   NEON GALAXY ARCADE - HOJA DE ESTILOS PRINCIPAL
+   ========================================================================== */
+
+/* ==========================================================================
+   MEJORA 3: Variables CSS (Custom Properties)
+   --------------------------------------------------------------------------
+   DOCUMENTACIÓN DE REPETICIÓN DE COLORES EN EL CÓDIGO ORIGINAL:
+   1. #00f0ff (Cian neón):
+      - Se repetía 6 VECES:
+        * Color de encabezados h2
+        * Borde inferior de h2
+        * Borde de celdas td y th de la tabla
+        * Estilo en línea de h1 (título principal)
+        * Estilo en línea de h3 (Zona Realidad Virtual)
+        * Estilo en línea de background-color del botón de envío
+   2. #ff007f (Magenta / Rosa neón):
+      - Se repetía 5 VECES:
+        * Color de fondo del header
+        * Borde de .tarjeta
+        * Color de fondo del footer
+        * Estilo en línea de h3 (Arcade Retro)
+        * Estilo en línea de h3 (Arena eSports)
+   3. white (#ffffff / Blanco):
+      - Se repetía 4 VECES:
+        * Color de texto general en body
+        * Color de enlaces en nav a
+        * Color de texto en footer
+        * Atributo font color="white" en el subtítulo del header
+   4. #0a0a12 (Negro azulado espacial / Fondo principal):
+      - Se repetía 2 VECES:
+        * Color de fondo de body
+        * Color de texto del botón de formulario
+   5. #1a1a2e (Azul marino oscuro / Fondo tarjeta destacada):
+      - Se repetía 2 VECES:
+        * Color de fondo de #destacado
+        * Color de texto en el segundo párrafo del footer
+   ========================================================================== */
+:root {
+    --color-fondo: #0a0a12;
+    --color-magenta: #ff007f;
+    --color-cian: #00f0ff;
+    --color-oscuro-morado: #1a1a2e;
+    --color-blanco: #ffffff;
+}
+
+/* ==========================================================================
+   MEJORA 1: Regla box-sizing: border-box
+   --------------------------------------------------------------------------
+   ¿Qué cambió?
+   Por defecto, los navegadores calculan el tamaño según 'content-box':
+   el ancho ('width') y alto ('height') sólo aplican al área de contenido,
+   y cualquier padding o borde se añade exteriormente sumándose al total.
+   Por ejemplo, una .tarjeta de 300px con 15px de padding y 2px de borde por lado
+   terminaba ocupando en pantalla 334px de ancho (300 + 15 + 15 + 2 + 2).
+
+   Con 'border-box', las dimensiones declaradas (300px) representan el tamaño total
+   incluyendo el padding y el border. El espacio para el contenido se ajusta internamente
+   a 266px. Esto previene desbordamientos inesperados, simplifica las cuadrículas
+   y hace que la maquetación sea predecible y consistente.
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   ESTILOS GENERALES DE LA PÁGINA
+   ========================================================================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-blanco);
+}
+
+header {
+    background-color: var(--color-magenta);
+    padding: 20px;
+}
+
+/* ==========================================================================
+   MEJORA 2: Estados :hover y :focus para enlaces de navegación
+   --------------------------------------------------------------------------
+   - :hover: Proporciona feedback visual cuando el cursor del mouse pasa por encima.
+   - :focus: Vital para la accesibilidad web (WCAG). Garantiza un indicador visual
+     claro para usuarios que navegan mediante teclado (tecla Tab) o lectores de pantalla.
+   ========================================================================== */
+nav a {
+    color: var(--color-blanco);
+    margin-right: 15px;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--color-cian);
+    text-decoration: underline;
+    text-shadow: 0 0 6px var(--color-cian);
+}
+
+nav a:focus {
+    color: var(--color-cian);
+    outline: 2px solid var(--color-cian);
+    outline-offset: 2px;
+    text-decoration: none;
+}
+
+h2 {
+    color: var(--color-cian);
+    border-bottom: 2px solid var(--color-cian);
+}
+
+/* ==========================================================================
+   TARJETAS Y SECCIONES
+   ========================================================================== */
+.tarjeta {
+    border: 2px solid var(--color-magenta);
+    padding: 15px;
+    margin-bottom: 10px;
+    width: 300px;
+}
+
+#destacado {
+    background-color: var(--color-oscuro-morado);
+}
+
+/* ==========================================================================
+   TABLA DE HORARIOS
+   ========================================================================== */
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid var(--color-cian);
+    padding: 8px;
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA
+   ========================================================================== */
+footer {
+    background-color: var(--color-magenta);
+    color: var(--color-blanco);
+    padding: 20px;
+}
+
+/* ==========================================================================
+   CLASES QUE REEMPLAZAN LOS 9 ESTILOS EN LÍNEA ORIGINALES
+   ========================================================================== */
+
+/* 1. Título principal en header (originalmente: style="color: #00f0ff; margin: 0;") */
+.titulo-principal {
+    color: var(--color-cian);
+    margin: 0;
+}
+
+/* 2. Subtítulo en header (originalmente: style="margin-top: 5px;") */
+.subtitulo-header {
+    margin-top: 5px;
+}
+
+/* 3. Contenedor principal main (originalmente: style="padding: 20px;") */
+.contenido-principal {
+    padding: 20px;
+}
+
+/* 4. Título de tarjeta VR (originalmente: style="color: #00f0ff;") */
+.tarjeta-titulo-cian {
+    color: var(--color-cian);
+}
+
+/* 5 y 6. Títulos de tarjetas Arcade y Arena (originalmente: style="color: #ff007f;") */
+.tarjeta-titulo-rosa {
+    color: var(--color-magenta);
+}
+
+/* 7. Botón de formulario (originalmente: style="background-color: #00f0ff; color: #0a0a12; padding: 10px 20px; border: none; font-weight: bold;") */
+.boton-enviar {
+    background-color: var(--color-cian);
+    color: var(--color-fondo);
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* MEJORA 2: Estados :hover y :focus para el botón del formulario */
+.boton-enviar:hover {
+    background-color: #3df3ff;
+    box-shadow: 0 0 10px var(--color-cian);
+}
+
+.boton-enviar:focus {
+    outline: 2px solid var(--color-blanco);
+    outline-offset: 3px;
+    box-shadow: 0 0 12px var(--color-cian);
+}
+
+/* 8. Primer párrafo del pie de página (originalmente: style="margin: 0;") */
+.footer-texto {
+    margin: 0;
+}
+
+/* 9. Segundo párrafo del pie de página (originalmente: style="margin-top: 5px; color: #1a1a2e;") */
+.footer-contacto {
+    margin-top: 5px;
+    color: var(--color-oscuro-morado);
+}
+
